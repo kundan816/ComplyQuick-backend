@@ -530,7 +530,14 @@ export const getEnabledCourses = async (
             description: true,
             learningObjectives: true,
             tags: true,
-            materialUrl: true
+            materialUrl: true,
+            enrollments: {
+              where: {
+                user: {
+                  tenantId
+                }
+              }
+            }
           }
         },
         details: {
@@ -552,6 +559,7 @@ export const getEnabledCourses = async (
       learningObjectives: tc.course.learningObjectives,
       tags: tc.course.tags,
       materialUrl: tc.course.materialUrl,
+      enrolledUsers: tc.course.enrollments.length,
       skippable: tc.skippable,
       mandatory: tc.mandatory,
       retryType: tc.retryType,
@@ -587,7 +595,14 @@ export const getDisabledCourses = async (
             description: true,
             learningObjectives: true,
             tags: true,
-            materialUrl: true
+            materialUrl: true,
+            enrollments: {
+              where: {
+                user: {
+                  tenantId
+                }
+              }
+            }
           }
         },
         details: {
@@ -609,6 +624,7 @@ export const getDisabledCourses = async (
       learningObjectives: tc.course.learningObjectives,
       tags: tc.course.tags,
       materialUrl: tc.course.materialUrl,
+      enrolledUsers: tc.course.enrollments.length,
       skippable: tc.skippable,
       mandatory: tc.mandatory,
       retryType: tc.retryType,
